@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "584611123617",
+    "project_id": "um-library",
+    "storage_bucket": "um-library.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584611123617:android:86d1956d0a94aa2b487be0",
+        "android_client_info": {
+          "package_name": "ium.library.mobile.um_library"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTPpJTOuIZNq9b5cMYJ42NqA8n8JXIRxU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
