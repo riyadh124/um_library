@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:um_library/app/env/colors.dart';
+import 'package:um_library/app/env/global_var.dart';
 import 'package:um_library/app/modules/updateProfile/views/update_profile_view.dart';
 import 'package:um_library/app/widgets/button.dart';
 
@@ -32,16 +33,29 @@ class ProfileView extends GetView<ProfileController> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CircleAvatar(
-                            maxRadius: 30,
-                            backgroundColor: primaryColor,
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.circular(100),
-                                clipBehavior: Clip.hardEdge,
-                                child: Image.asset(
-                                  "assets/images/student.png",
-                                  fit: BoxFit.fitWidth,
-                                )),
+                          GestureDetector(
+                            onTap: () {
+                              profileController.showImagePicker(context);
+                            },
+                            child: CircleAvatar(
+                              maxRadius: 30,
+                              backgroundColor: primaryColor,
+                              child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(100),
+                                  clipBehavior: Clip.hardEdge,
+                                  child: profileController.box
+                                              .read("userData")["avatar"] ==
+                                          null
+                                      ? Image.asset(
+                                          "assets/images/student.png",
+                                          fit: BoxFit.fitWidth,
+                                        )
+                                      : Image.network(
+                                          "http://103.175.221.242/${profileController.box.read("userData")["avatar"]}",
+                                          fit: BoxFit.cover,
+                                          width: 100,
+                                        )),
+                            ),
                           ),
                           SizedBox(
                             height: 8,

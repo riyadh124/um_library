@@ -29,8 +29,13 @@ class HomeController extends GetxController {
     }
     print("result : $barcodeAttendanceResult");
 
+    // barcodeAttendanceResult = "Attendance-2024-06-10";
+
     String expectedBarcode =
         "Attendance-${DateFormat('yyyy-MM-dd').format(DateTime.now())}";
+
+    print("result : $barcodeAttendanceResult");
+    print("result : $expectedBarcode");
 
     if (barcodeAttendanceResult == expectedBarcode) {
       authService().attendance(Get.context, barcodeAttendanceResult);
@@ -49,6 +54,8 @@ class HomeController extends GetxController {
       barcodeBookResult = res;
     }
     print("result : $barcodeBookResult");
+
+    // barcodeBookResult = 'Flutter';
 
     if (barcodeBookResult != null) {
       authService().scanBook(Get.context, barcodeBookResult);

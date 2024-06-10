@@ -79,12 +79,12 @@ class authService extends GetConnect {
 
       print("response $data");
       if (data != null) {
-        if (data['message'] == 'Attendance recorded successfully') {
+        if (data['message'] == 'Absensi berhasil') {
           onLoadingDismiss();
           successMessage(context, data['message']);
         } else {
-          onLoadingDismiss();
           errorMessage(data['message']);
+          onLoadingDismiss();
         }
       } else {
         onLoadingDismiss();
@@ -120,6 +120,7 @@ class authService extends GetConnect {
               "Yakin ingin meminjam buku berikut?",
               data["data"]["cover"],
               data["data"]["kode_buku"],
+              data["data"]["jumlah_buku"].toString(),
               data["data"]["judul_buku"],
               data["data"]["pengarang"],
               data["data"]["penerbit"],
@@ -169,7 +170,7 @@ class authService extends GetConnect {
         }
       } else {
         // onLoadingDismiss();
-        errorMessage("Gagal mengambil buku");
+        // errorMessage("Gagal mengambil buku");
       }
     } catch (e) {
       onLoadingDismiss();
@@ -337,7 +338,7 @@ class authService extends GetConnect {
           }
         } else {
           onLoadingDismiss();
-          errorMessage("Gagal Daftr");
+          errorMessage("Gagal Daftar");
         }
       } catch (e) {
         onLoadingDismiss();
@@ -345,6 +346,38 @@ class authService extends GetConnect {
       }
     } else {
       errorMessage("Lengkapi Data terlebih dahulu.");
+    }
+  }
+
+  Future uploadImage(context, image) async {
+    GetStorage box = GetStorage();
+    ProfileController profileController = Get.put(ProfileController());
+    showLoading();
+    try {
+      if (box.read("token") != null) {
+        final response = await post(
+            '$urlApi/update-photo',
+            FormData({
+              'user_id': box.read("userData")["id"],
+              'avatar': MultipartFile(image, filename: 'avatar.jpg'),
+            }),
+            headers: {'Authorization': "Bearer ${box.read("token")}"});
+
+        var data = response.body;
+
+        print("upload image : $data");
+
+        if (data != null) {
+          profileController.update();
+          successMessage(context, data['message']);
+          getUser(context);
+        }
+      } else {
+        errorMessage("Token is null");
+        throw Exception("Token is null");
+      }
+    } catch (e) {
+      errorMessage("uploadImage : $e");
     }
   }
 }

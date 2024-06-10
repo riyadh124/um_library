@@ -62,10 +62,18 @@ class HomeView extends GetView<HomeController> {
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(100),
                             clipBehavior: Clip.hardEdge,
-                            child: Image.asset(
-                              "assets/images/student.png",
-                              fit: BoxFit.fitWidth,
-                            )),
+                            child:
+                                homeController.box.read("userData")["avatar"] ==
+                                        null
+                                    ? Image.asset(
+                                        "assets/images/student.png",
+                                        fit: BoxFit.fitWidth,
+                                      )
+                                    : Image.network(
+                                        "http://103.175.221.242/${homeController.box.read("userData")["avatar"]}",
+                                        fit: BoxFit.cover,
+                                        width: 100,
+                                      )),
                       ),
                     )
                   ],

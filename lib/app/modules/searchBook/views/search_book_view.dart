@@ -60,7 +60,7 @@ class SearchBookView extends GetView<SearchBookController> {
                         Padding(
                           padding: const EdgeInsets.only(bottom: 16.0),
                           child: Image.network(
-                            "http://192.168.1.8:8000/storage/${searchBookController.dataBook["cover"]}",
+                            "http://103.175.221.242/storage/${searchBookController.dataBook["cover"]}",
                             height: 200,
                           ),
                         ),
@@ -80,6 +80,18 @@ class SearchBookView extends GetView<SearchBookController> {
                           padding: const EdgeInsets.only(left: 16, bottom: 8.0),
                           child: Text(
                             "Pengarang : ${searchBookController.dataBook["pengarang"]}" ??
+                                '',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color(0xff222222),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16, bottom: 8.0),
+                          child: Text(
+                            "Jumlah : ${searchBookController.dataBook["jumlah_buku"]}" ??
                                 '',
                             style: TextStyle(
                               fontSize: 16,

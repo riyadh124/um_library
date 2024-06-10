@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:um_library/app/widgets/button.dart';
 import 'package:um_library/app/widgets/dialog.dart';
 
-void confirmBookMessage(context, title, description, cover, codeBuku, judulBuku,
+void confirmBookMessage(context, title, description, cover, codeBuku, jumlahBuku, judulBuku,
     pengarang, penerbit, tahunTerbit, status, idBuku, VoidCallback action) {
   showDialog(
     context: context,
@@ -15,6 +15,7 @@ void confirmBookMessage(context, title, description, cover, codeBuku, judulBuku,
         secondaryButtonText: 'Batal',
         cover: cover,
         codeBuku: codeBuku,
+        jumlahBuku: jumlahBuku,
         judulBuku: judulBuku,
         pengarang: pengarang,
         penerbit: penerbit,

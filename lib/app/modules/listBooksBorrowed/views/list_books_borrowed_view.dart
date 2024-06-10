@@ -24,7 +24,7 @@ class ListBooksBorrowedView extends GetView<ListBooksBorrowedController> {
                     itemBuilder: (context, index) {
                       return ListTile(
                         leading: Image.network(
-                            "http://192.168.1.8:8000/storage/${listBooksBorrowedController.listBooksBorrowed[index]["book"]["cover"]}"),
+                            "http://103.175.221.242/storage/${listBooksBorrowedController.listBooksBorrowed[index]["book"]["cover"]}"),
                         title: Text(
                           listBooksBorrowedController.listBooksBorrowed[index]
                               ["book"]["judul_buku"],
